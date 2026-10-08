@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aritmetica basica</title>
+    <link rel="stylesheet" href="aritmetica_basica.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script src="aritmetica_basica.js" defer></script>
+</head>
+<body>
+    <!-------------------------------------->
+    <!--|estructuracion_aritmetica_basica|-->
+    <!-------------------------------------->
+    <main class="app">
+        <!-- Encabezado con el título y la explicación -->
+        <header>
+            <h1>Aritmética Básica</h1>
+            <p class="subtitulo">Suma, resta, multiplica y divide. También puedes usar el teclado.</p>
+        </header>
+        <!-- Calculadora: pantalla arriba y teclas abajo.
+        Su estado se guarda en localStorage en cada pulsación. -->
+        <section class="calculadora" aria-label="Calculadora">
+            <!-- Pantalla tipo LCD.
+            Se actualiza con JavaScript cada vez que se pulsa una tecla. -->
+            <div class="pantalla">
+                <!-- Línea pequeña: muestra la operación pendiente o un mensaje de error -->
+                <p id="expresion" class="expresion"></p>
+                <!-- Número grande: lo que se está escribiendo o el resultado -->
+                <output id="resultado" class="resultado">0</output>
+            </div>
+            <!-- Teclado: cada botón dice su tipo (data-tipo) y su valor (data-valor).
+            JavaScript lee esos atributos para saber qué hacer al pulsar. -->
+            <div id="teclado" class="teclado">
+                <!-- Fila 1: borrar todo, borrar un dígito, cambiar signo y dividir -->
+                <button class="tecla fn limpiar" data-tipo="limpiar">C</button>
+                <button class="tecla fn" data-tipo="borrar" aria-label="Borrar último dígito">⌫</button>
+                <button class="tecla fn" data-tipo="signo" aria-label="Cambiar signo">±</button>
+                <button class="tecla op" data-tipo="operador" data-valor="/" aria-label="Dividir">÷</button>
+                <!-- Fila 2 -->
+                <button class="tecla" data-tipo="digito" data-valor="7">7</button>
+                <button class="tecla" data-tipo="digito" data-valor="8">8</button>
+                <button class="tecla" data-tipo="digito" data-valor="9">9</button>
+                <button class="tecla op" data-tipo="operador" data-valor="*" aria-label="Multiplicar">×</button>
+                <!-- Fila 3 -->
+                <button class="tecla" data-tipo="digito" data-valor="4">4</button>
+                <button class="tecla" data-tipo="digito" data-valor="5">5</button>
+                <button class="tecla" data-tipo="digito" data-valor="6">6</button>
+                <button class="tecla op" data-tipo="operador" data-valor="-" aria-label="Restar">−</button>
+                <!-- Fila 4 -->
+                <button class="tecla" data-tipo="digito" data-valor="1">1</button>
+                <button class="tecla" data-tipo="digito" data-valor="2">2</button>
+                <button class="tecla" data-tipo="digito" data-valor="3">3</button>
+                <button class="tecla op" data-tipo="operador" data-valor="+" aria-label="Sumar">+</button>
+                <!-- Fila 5: el cero es más ancho (ocupa dos columnas) -->
+                <button class="tecla cero" data-tipo="digito" data-valor="0">0</button>
+                <button class="tecla" data-tipo="punto" aria-label="Punto decimal">,</button>
+                <button class="tecla igual" data-tipo="igual">=</button>
+            </div>
+        </section>
+        <!-- Atajos de teclado: ayuda para quien usa computador -->
+        <aside class="atajos">
+            <h2>Atajos de teclado</h2>
+            <ul>
+                <li>Números, <kbd>,</kbd> o <kbd>.</kbd> para escribir.</li>
+                <li><kbd>+</kbd> <kbd>-</kbd> <kbd>*</kbd> <kbd>/</kbd> para operar.</li>
+                <li><kbd>Enter</kbd> para obtener el resultado.</li>
+                <li><kbd>Retroceso</kbd> borra un dígito y <kbd>Esc</kbd> borra todo.</li>
+            </ul>
+        </aside>
+        <!-- Historial de las últimas operaciones -->
+        <section class="historial-caja">
+            <h2>Últimas operaciones</h2>
+            <!-- Se muestran solo las 5 más recientes -->
+            <!-- La lista se llena con JavaScript y se conserva en localStorage -->
+            <ol id="historial" class="historial"></ol>
+            <!-- Borra todo el historial -->
+            <button id="btn-borrar" class="boton-texto">Borrar historial</button>
+        </section>
+    </main>
+    <!-- Aviso por si el navegador tiene JavaScript desactivado -->
+    <noscript>Activa JavaScript para usar la calculadora.</noscript>
+</body>
+</html>

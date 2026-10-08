@@ -1,0 +1,81 @@
+/* ===== VARIABLES: colores reutilizables ===== */
+:root {
+    --fondo: #c9d6df;       /* azul grisáceo de la página */
+    --cuerpo: #2b3138;      /* gris grafito de la calculadora */
+    --lcd: #cfe3c3;         /* verde apagado de la pantalla LCD */
+    --lcd-texto: #1d2b1b;   /* texto oscuro de la pantalla */
+    --tecla: #444c55;       /* teclas de números */
+    --funcion: #6b747d;     /* teclas C, borrar y signo */
+    --naranja: #f08a24;     /* teclas de operaciones */
+    --rojo: #d8504d;        /* tecla C */
+}
+/* Quita márgenes por defecto y simplifica el cálculo de tamaños */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+/* Fondo de la página y tipografía general */
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 28px 14px;
+    font-family: 'Barlow', Arial, sans-serif;
+    color: var(--cuerpo);
+    background: var(--fondo);
+}
+/* Contenedor principal y títulos */
+.app { width: 100%; max-width: 380px; }
+h1 { font-size: 2.2rem; font-weight: 700; line-height: 1.1; }
+h2 { margin-bottom: 8px; font-size: 1.2rem; }
+.subtitulo { margin: 8px 0 22px; line-height: 1.5; }
+/* Cuerpo de la calculadora */
+.calculadora {
+    padding: 18px;
+    background: var(--cuerpo);
+    border-radius: 22px;
+    box-shadow: 0 10px 0 #1b2025;
+}
+/* Pantalla LCD: la expresión va arriba y el resultado abajo, alineados a la derecha */
+.pantalla { padding: 12px 16px; text-align: right; font-family: 'Share Tech Mono', monospace; color: var(--lcd-texto); background: var(--lcd); border-radius: 10px; box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.25); }
+.expresion { min-height: 1.5em; font-size: 1.05rem; opacity: 0.75; }
+.resultado { display: block; font-size: 2.6rem; overflow: hidden; }
+/* Teclado: cuadrícula de 4 columnas */
+.teclado { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 16px; }
+/* Teclas: relieve con sombra inferior que se hunde al presionar */
+.tecla {
+    padding: 16px 0;
+    font: inherit;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    background: var(--tecla);
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 0 #1f2428;
+    cursor: pointer;
+}
+.tecla:active { transform: translateY(3px); box-shadow: 0 1px 0 #1f2428; }
+/* Tipos de teclas */
+.fn { background: var(--funcion); }
+.limpiar { background: var(--rojo); }
+.op { color: var(--cuerpo); background: var(--naranja); }
+.op.activo { background: #fff; }
+.igual { color: var(--cuerpo); background: #f6c445; }
+.cero { grid-column: span 2; }
+/* Foco visible para quien navega con el teclado */
+button:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+/* Atajos de teclado: lista y etiquetas de tecla */
+.atajos { margin-top: 24px; padding: 16px 20px; border: 2px solid var(--cuerpo); border-radius: 14px; }
+.atajos ul { padding-left: 20px; line-height: 1.8; }
+kbd { padding: 1px 7px; font: inherit; font-weight: 700; background: #fff; border: 1px solid var(--cuerpo); border-radius: 5px; }
+/* Historial */
+.historial-caja { margin-top: 24px; padding: 16px 20px; background: #e7eef2; border-radius: 14px; }
+.historial { padding-left: 22px; line-height: 1.8; }
+.historial:empty::after { content: "Aún no hay operaciones."; margin-left: -22px; opacity: 0.7; }
+.boton-texto { margin-top: 8px; padding: 6px 0; font: inherit; color: var(--cuerpo); background: none; border: none; text-decoration: underline; cursor: pointer; }
+/* En pantallas pequeñas se reducen los tamaños */
+@media (max-width: 420px) {
+    h1 { font-size: 1.8rem; }
+    .resultado { font-size: 2.1rem; }
+    .tecla { padding: 14px 0; }
+}
+/* Respeta a quienes prefieren menos movimiento en pantalla */
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
